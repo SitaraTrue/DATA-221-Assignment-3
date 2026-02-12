@@ -10,9 +10,11 @@ After performing the split, write comments in your code explaining:
 - What the purpose of the testing set is
 '''
 
-# Reads csv into a dataframe
+# Imports libraries
 from sklearn.model_selection import train_test_split
 import pandas as pd
+
+# Reads csv into a dataframe
 kidney_disease_df = pd.read_csv("kidney_disease.csv")
 
 # Creates feature matrix X of all columns except "classification" and saves "classification" as label vector Y
