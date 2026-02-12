@@ -11,10 +11,11 @@ Then, write comments answering:
 - If there are extreme values, which statistic is more affected: mean or median? Explain.
 '''
 
+# Reads the csv into a DataFrame
 import pandas as pd
-
 crime_df = pd.read_csv("crime1.csv")
 
+# Finds summary statistics using methods
 print("Violent Crime per Pop Summary Statistics:")
 print(f"Mean: {crime_df["ViolentCrimesPerPop"].mean()}")
 print(f"Median: {crime_df["ViolentCrimesPerPop"].median()}")
