@@ -10,5 +10,25 @@ After generating the plots, write comments in your code describing:
 - Whether the box plot suggests the presence of outliers
 '''
 
-import pandas
-import matplotlib
+# Imports libraries and reads csv as a DataFrame
+import pandas as pd
+import matplotlib.pyplot as plt
+crime_df = pd.read_csv("crime1.csv")
+
+# Creates histogram
+plt.hist(crime_df["ViolentCrimesPerPop"], edgecolor='white')
+plt.xlabel("Proportion of Violent Crimes")
+plt.ylabel("Frequency")
+plt.title("Distribution of Proportion of Violent Crime per Population")
+plt.show()
+
+# Creates box plot
+plt.boxplot(crime_df["ViolentCrimesPerPop"])
+plt.xlabel("All Populations")
+plt.ylabel("Proportion of Violent Crimes")
+plt.title("Box Plot of Proportion of Violent Crime per Population")
+plt.show()
+
+'''
+
+'''
