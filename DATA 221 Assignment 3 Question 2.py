@@ -30,5 +30,9 @@ plt.title("Box Plot of Proportion of Violent Crime per Population")
 plt.show()
 
 '''
-
+The histogram shows that the distribution is slightly right-skewed. 
+Most of the values are concentrated to left (lower crime rates).
+The boxplot shows that the median is slightly below 0.4.
+The boxplot does not show any outliers, but it shows a longer tail on the right.
+The boxplot and the histogram support each other and what we found in Q1: the distribution of violent crime rates is right-skewed.
 '''
