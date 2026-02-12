@@ -21,3 +21,9 @@ y = kidney_disease_df["classification"]
 
 # Splits training and testing data with a fixed seed
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=19)
+
+'''
+The purpose of testing data is to see how the model performs with unfamiliar data.
+If you test and train on the same data, the model will be overfitted to the training data.
+The model learned the training data, so testing it on the same data won't show how accurate it is with new data.
+'''
