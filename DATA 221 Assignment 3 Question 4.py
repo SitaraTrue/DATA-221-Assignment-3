@@ -17,6 +17,7 @@ Then write comments in your code explaining:
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.impute import KNNImputer
+from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score
 import pandas as pd
 import numpy as np
 
@@ -36,24 +37,21 @@ kidney_disease_df = kidney_disease_df.replace({"notpresent": 0.0, 'present': 1.0
 # Fill missing data with KNN imputation
 num_neighbors = 5
 imputer = KNNImputer(n_neighbors=num_neighbors)
-imputed_kidney_disease_df = imputer.fit_transform(kidney_disease_df)
-print(imputed_kidney_disease_df)
+imputed_kidney_disease_df = pd.DataFrame(imputer.fit_transform(kidney_disease_df), columns=kidney_disease_df.columns)
 
 # Creates feature matrix X of all columns except "classification" and saves "classification" as label vector Y
-x = kidney_disease_df.drop("classification", axis=1)
-y = kidney_disease_df["classification"]
+x = imputed_kidney_disease_df.drop("classification", axis=1)
+y = imputed_kidney_disease_df["classification"]
 
 # Splits training and testing data with a fixed seed
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=19)
 
-'''
-num_neighbors = 5
-imputer = KNNImputer(n_neighbors=num_neighbors)
-imputed_kidney_disease_df = imputer.fit_transform(kidney_disease_df)
-
-print(imputed_kidney_disease_df)
-
+# Trains the data and predicts labels for the test data
 knn_model = KNeighborsClassifier(n_neighbors=num_neighbors, metric='euclidean')
 trained_knn_model = knn_model.fit(x_train, y_train)
 kidney_disease_prediction = trained_knn_model.predict(x_test)
-'''
+
+# Measure accuracy using test labels and predicted labels
+
+print(f"Confusion matrix: \n{confusion_matrix(kidney_disease_prediction, y_test)}")
+print(f"")
