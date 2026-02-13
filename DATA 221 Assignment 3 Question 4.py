@@ -52,8 +52,8 @@ trained_knn_model = knn_model.fit(x_train, y_train)
 kidney_disease_prediction = trained_knn_model.predict(x_test)
 
 # Measure performance using test labels and predicted labels
-print(f"Confusion matrix: \n{confusion_matrix(kidney_disease_prediction, y_test)}")
-print(f"Accuracy: {accuracy_score(kidney_disease_prediction, y_test)} \nPrecision: {precision_score(kidney_disease_prediction, y_test)} \nRecall: {recall_score(kidney_disease_prediction, y_test)} \nF1-Score: {f1_score(kidney_disease_prediction, y_test)}")
+print(f"Confusion matrix: \n{confusion_matrix(y_test, kidney_disease_prediction)}")
+print(f"Accuracy: {accuracy_score(y_test, kidney_disease_prediction)} \nPrecision: {precision_score(y_test, kidney_disease_prediction)} \nRecall: {recall_score(y_test, kidney_disease_prediction)} \nF1-Score: {f1_score(y_test, kidney_disease_prediction)}")
 
 '''
 True positive means someone is predicted to have kidney disease and truly has it.
