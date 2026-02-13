@@ -23,7 +23,7 @@ import numpy as np
 
 kidney_disease_df = pd.read_csv("kidney_disease.csv")
 
-# Convert binary categorical features to 1s and 0s and clean data so that it can be KNN imputed
+# Convert binary categorical features to 1s and 0s and clean data so that it can be KNN imputed (fill missing values)
 kidney_disease_df = kidney_disease_df.replace({"notpresent": 0.0, 'present': 1.0,
                                                "normal": 1.0,"abnormal": 0.0,
                                                "yes":1.0, "no":0.0,
@@ -51,7 +51,16 @@ knn_model = KNeighborsClassifier(n_neighbors=num_neighbors, metric='euclidean')
 trained_knn_model = knn_model.fit(x_train, y_train)
 kidney_disease_prediction = trained_knn_model.predict(x_test)
 
-# Measure accuracy using test labels and predicted labels
-
+# Measure performance using test labels and predicted labels
 print(f"Confusion matrix: \n{confusion_matrix(kidney_disease_prediction, y_test)}")
-print(f"")
+print(f"Accuracy: {accuracy_score(kidney_disease_prediction, y_test)} \nPrecision: {precision_score(kidney_disease_prediction, y_test)} \nRecall: {recall_score(kidney_disease_prediction, y_test)} \nF1-Score: {f1_score(kidney_disease_prediction, y_test)}")
+
+'''
+True positive means someone is predicted to have kidney disease and truly has it.
+True negative means someone is predicted to not have kidney disease and truly does not have it.
+False positive means someone is predicted to have kidney disease but actually does not have it
+False negative means someone is predicted to not have kidney disease but actually does have it.
+
+Accuracy doesn't distinguish between negatives and positives, and if the data is mostly negative or mostly positive, the accuracy could be skewed.
+Recall would be the most important metric for this dataset. This would show what proportion of kidney disease cases the model catches.
+'''
